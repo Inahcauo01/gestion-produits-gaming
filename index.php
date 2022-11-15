@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="assets/style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>ORIGIN GAMER</title>
 </head>
@@ -133,26 +133,26 @@
     <!-- Form authentification-->
     <div class="popup-form">
         <!-- inscription form -->
+        <!-- <form action="scripts.php"></form> -->
         <div class="login-form col-6">
             <h2>Creer un compte</h2>
-            <input name="username-signup" placeholder="Nom complet" type="text">
-            <input name="email-signup" placeholder="Email" type="email">
-            <input name="tele-signup" placeholder="Telephone" type="tel">
-            <input name="password-signup" placeholder="mot de passe" type="password"><br>
-            <input name="password-signup" placeholder="Confirmer le mot de passe" type="password"><br>
+            <input name="usernameSignup" placeholder="Nom complet" type="text">
+            <input name="emailSignup" placeholder="Email" type="email">
+            <input name="pwdSignup" placeholder="mot de passe" type="password"><br>
+            <input name="cpwdsignup" placeholder="Confirmer le mot de passe" type="password"><br>
 
-            <button class="btn btn-primary rounded-pill" type="submit" name="signup">s'inscrire</button>
+            <button class="btn btn-primary rounded-pill" type="submit" name="signUp">s'inscrire</button>
         </div>
         <!-- connection form -->
-        <form action="#" method="POST" class="sign-form col-6 d-flex flex-column justify-content-between align-items-center"> 
+        <form action="scripts.php" method="POST" class="sign-form col-6 d-flex flex-column justify-content-between align-items-center"> 
             <h2>Se connecter</h2>
             
             <span class="close align-self-end"><i class="fa-regular fa-circle-xmark fa-2x"></i></span>
             <div>
-                <input name="email-sign" placeholder="Email" type="email" class="mb-3">
-                <input name="password-sign" placeholder="mot de passe" type="password"><br>
+                <input name="emailSignin" placeholder="Email" type="email" class="mb-3">
+                <input name="pwdSignin" placeholder="mot de passe" type="password"><br>
             </div>
-            <button class="btn btn-primary rounded-pill" type="submit" name="connecter">se connecter</button>
+            <button class="btn btn-primary rounded-pill" type="submit" name="signIn">se connecter</button>
         </form>
 
 
@@ -200,7 +200,7 @@
 
 
     <!-- scripts -->
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>

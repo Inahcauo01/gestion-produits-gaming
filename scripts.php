@@ -1,20 +1,40 @@
-<?php include 'config.php' ;
+<?php include 'conf.php' ;
 
-if(isset($_POST["signup"]))     signup();
-if(isset($_POST["signin"]))     signin(); 
+if(isset($_POST["signUp"]))     signup();
+if(isset($_POST["signIn"]))     signin(); 
 
 function signup(){
-    include 'config.php';
-    $nom = mysql_real_escape_string($_POST["username-signup"]);
-    $email = mysql_real_escape_string($_POST["email-signup"]);
-    $tele = mysql_real_escape_string($_POST["tele-signup"]);
-    $password = md5($_POST["password-signup"]);
-    $cpassword = md5($_POST["password-signup"]);
+    include 'conf.php';
+    $nom = mysql_real_escape_string($_POST["usernameSignup"]);
+    $email = mysql_real_escape_string($_POST["emailSignup"]);
+    $password = md5($_POST["pwdSignup"]);
+    $cpassword = md5($_POST["cpwdsignup"]);
 
+if($password != $cpassword){
+    echo "ils sont pas identiques !";
+}
+else{
+    echo "ils sont identiques";
 }
 
 
+}
 
+function signin(){
+    include 'conf.php';
+    $email = $_POST['emailSignin'];
+    $pwd = $_POST['pwdSignin'];
+
+$sql    = "select * from user where email = '$email' and password = '$pwd' and type_user = 2";
+$result = mysqli_query($conn,$sql);
+
+if(mysqli_num_rows($result)>0){
+    header("location: dashboard.html");
+}
+else{
+    echo 'l email ou le mot de passe est incorrect';
+}
+}
 
 
 ?>
