@@ -70,40 +70,26 @@ if (!isset($_SESSION['username'])) {
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <!-- onclick=\"updateButton(".$jeu["id"].",'".$jeu["title"]."','".$jeu["prix"]."','".$jeu["date_ajout"]."','".$jeu["id-cat"]."')\" -->
-            <!-- <a href=\"index.php?Suppid=".$task["id"]."\" id=\"deleteclick".$task["id"]."\"></a> -->
-            <td><button onclick="updateButton()" class="btn btn-secondary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">modifier</button>
-                <button class="btn btn-dark btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">supprimer</button></td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td><button class="btn btn-secondary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">modifier</button>
-                <button class="btn btn-dark btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">supprimer</button></td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td><button class="btn btn-secondary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">modifier</button>
-                <button class="btn btn-dark btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">supprimer</button></td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td><button class="btn btn-secondary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">modifier</button>
-                <button class="btn btn-dark btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">supprimer</button></td>
-        </tr>
+    <?php
+        $sql    = "select j.id j_id,title,prix,date_ajout,id_cat, c.id,nom from jeux j, categories c where j.id_cat=c.id";
+        $result = mysqli_query($conn,$sql);
+
+        if (mysqli_num_rows($result) > 0) {
+    
+            while($row = mysqli_fetch_assoc($result)) {
+                // $image = (!empty($row['img_prod'])) ? 'images/'.$row['img_prod'] : 'images/noimage.png';
+                echo "<tr><td>" 
+                . $row["title"]. "</td><td>" 
+                . $row["prix"] ."</td><td>" 
+                . $row["date_ajout"]."</td><td>"
+                . $row["nom"]
+            // liste des actions
+                ."</td><td><a  href=\"../scripts.php?suppJeu=".$row["j_id"]."\" onclick=\"confirm('Vous voulez vraiment supprimer ce jeu')\" class=\"btn btn-sm btn-dark rounded-pill\">Supprimer</a></td></tr>";
+                ;
+            }
+        }
+    ?>
+
     </tbody>
     </table>
 

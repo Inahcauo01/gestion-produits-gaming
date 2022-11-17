@@ -6,15 +6,16 @@ if(isset($_POST["signUp"]))     signup();
 if(isset($_POST["signIn"]))     signin(); 
 if(isset($_POST["signOut"]))    logout();
 if(isset($_POST['addCat']))     addCategorie();
-if(isset($_GET['suppCat']))    suppCategorie();
+if(isset($_GET['suppCat']))     suppCategorie();
+if(isset($_GET['suppJeu']))     suppJeu();
 
 
 function signup(){
     include 'conf.php';
-    $nom = mysqli_real_escape_string($conn,$_POST["usernameSignup"]);
+    $nom   = mysqli_real_escape_string($conn,$_POST["usernameSignup"]);
     $email = mysqli_real_escape_string($conn,$_POST["emailSignup"]);
-    $pwd = md5($_POST["pwdSignup"]);
-    $cpwd = md5($_POST["cpwdsignup"]);
+    $pwd   = md5($_POST["pwdSignup"]);
+    $cpwd  = md5($_POST["cpwdsignup"]);
 
 if($pwd != $cpwd){
     $msg="les pwds sont pas identiques !";
@@ -126,8 +127,18 @@ function suppCategorie(){
         $msg="Problem lors de la suppression !";
         header("Location: pages/categories.php?msg=$msg");
    }
-
 }
-
+function suppJeu(){
+    include 'conf.php';
+    $sql    = "delete from jeux where id=".$_GET["suppJeu"];
+    $result = mysqli_query($conn,$sql);
+    if($result){
+        header("Location: pages/jeux.php");
+        
+    }else{
+        $msg="Problem lors de la suppression !";
+        header("Location: pages/jeux.php?msg=$msg");
+   }
+}
 
 ?>
