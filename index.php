@@ -1,4 +1,11 @@
-<?php include 'scripts.php' ?>
+<?php include 'scripts.php';
+
+if(isset($_GET["msg"])){
+  $msg=$_GET["msg"];
+  echo "<script>alert('$msg')</script>";
+}
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,31 +22,32 @@
     <header id="first-view">
         <nav class="navbar navbar-expand-sm bg-transparent navbar-dark">
             <div class="container-fluid">
-                <a href="index.html" class="navbar-brand nav-link logo col-4"><h3 class="logo">ORIGIN GAMER</h3></a>
+                <a href="index.php" class="navbar-brand nav-link logo col-4"><h3 class="logo">ORIGIN GAMER</h3></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                     <ul class="navbar-nav col-6">
                         <li class="nav-item">
-                            <a class="nav-link" href="#jeux">Jeux</a>
+                            <a class="nav-link fw-light" href="#jeux">Jeux</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contactez nous</a>
+                            <a class="nav-link fw-light" href="#">Contactez nous</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Apropos de nous</a>
+                            <a class="nav-link fw-light" href="#">Apropos de nous</a>
                         </li>    
                     </ul>
                     <div class="col-6 d-flex justify-content-end">
-                        <span class="btn btn-light border rounded-5 seconnecter">se connecter</span>
+                        <?php buttons() ?>
+                        
                     </div>
                 </div>
             </div>
         </nav>
         <div class="first-title col-6">
             <h1 class="glow">CHALLENGE YOURSELF <br>AND LET THE GAME BEGIN ...</h1>
-            <p>Le site numero un , pour mieux vous servir de troouver les meilleurs jeux videos .</p>
+            <p>Le site numero un , pour mieux vous servir de trouver les meilleurs jeux videos</p>
             
         </div>
         <div class="my-5 ms-4">
@@ -89,7 +97,7 @@
         <div class="d-flex row">
                 <div class="col-sm-4 my-4">
                     <div class="card">
-                        <img class="card-img-top" src="image/huntshowdown.jpg" alt="nom-jeu">
+                        <img class="card-img-top" src="assets/image/huntshowdown.jpg" alt="nom-jeu">
                         <span class="date">14/02/2022</span>
                         <div class="card-body">
                             <small>Xbox</small>
@@ -102,7 +110,7 @@
                 
                 <div class="col-sm-4 my-4">
                     <div class="card">
-                        <img class="card-img-top" src="image/the witcher.jpeg" alt="nom-jeu">
+                        <img class="card-img-top" src="assets/image/the witcher.jpeg" alt="nom-jeu">
                         <span class="date">01/02/2022</span>
                         <div class="card-body">
                             <small>Playstation</small>
@@ -115,7 +123,7 @@
 
                 <div class="col-sm-4 my-4">
                     <div class="card">
-                        <img class="card-img-top" src="image/pes.jpg" alt="nom-jeu">
+                        <img class="card-img-top" src="assets/image/pes.jpg" alt="nom-jeu">
                         <span class="date">14/02/2021</span>
                         <div class="card-body">
                             <small>PC</small>
@@ -134,23 +142,23 @@
     <div class="popup-form">
         <!-- inscription form -->
         <!-- <form action="scripts.php"></form> -->
-        <div class="login-form col-6">
+        <form action="scripts.php" method="POST" class="login-form col-6">
             <h2>Creer un compte</h2>
-            <input name="usernameSignup" placeholder="Nom complet" type="text">
-            <input name="emailSignup" placeholder="Email" type="email">
-            <input name="pwdSignup" placeholder="mot de passe" type="password"><br>
-            <input name="cpwdsignup" placeholder="Confirmer le mot de passe" type="password"><br>
+            <input class="input-index" name="usernameSignup" placeholder="Nom complet" type="text">
+            <input class="input-index" name="emailSignup" placeholder="Email" type="email">
+            <input class="input-index" name="pwdSignup" placeholder="mot de passe" type="password"><br>
+            <input class="input-index" name="cpwdsignup" placeholder="Confirmer le mot de passe" type="password"><br>
 
             <button class="btn btn-primary rounded-pill" type="submit" name="signUp">s'inscrire</button>
-        </div>
+        </form>
         <!-- connection form -->
         <form action="scripts.php" method="POST" class="sign-form col-6 d-flex flex-column justify-content-between align-items-center"> 
             <h2>Se connecter</h2>
             
             <span class="close align-self-end"><i class="fa-regular fa-circle-xmark fa-2x"></i></span>
             <div>
-                <input name="emailSignin" placeholder="Email" type="email" class="mb-3">
-                <input name="pwdSignin" placeholder="mot de passe" type="password"><br>
+                <input class="input-index" name="emailSignin" placeholder="Email" type="email" class="mb-3">
+                <input class="input-index" name="pwdSignin" placeholder="mot de passe" type="password"><br>
             </div>
             <button class="btn btn-primary rounded-pill" type="submit" name="signIn">se connecter</button>
         </form>

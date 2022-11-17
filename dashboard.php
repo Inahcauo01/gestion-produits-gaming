@@ -1,3 +1,10 @@
+<?php include 'scripts.php';
+
+if (!isset($_SESSION['username'])) {
+	$msg="Error ! Vous n'avez pas la permission d'entrer";
+    header("Location: index.php?msg=$msg");
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,13 +18,13 @@
 <body>
 <div id="header-dashboard">
     <div id="nav-side" class="bg-dark d-flex flex-column">
-        <a href="index.html" class="navbar-brand col-4"><h4 class="logo">ORIGIN GAMER</h4></a>
+        <a href="index.html" class="navbar-brand col-4 mb-3"><h4 class="logo">ORIGIN GAMER</h4></a>
 
-        <a href="#" class="p-3 a-link"><i class="fas fa-chart-line i-link"></i> Tableau de bord</a>
-        <a href="#" class="p-3 a-link  active"><i class="fa-regular fa-handshake i-link"></i> Gestion des commandes</a>
+        <a href="#" class="p-3 a-link  active"><i class="fas fa-chart-line i-link"></i> Tableau de bord</a>
+        <a href="#" class="p-3 a-link"><i class="fa-regular fa-handshake i-link"></i> Gestion des commandes</a>
         <a href="#" class="p-3 a-link "><i class="fas fa-users i-link"></i> Utilisateurs</a>
         <a href="#" class="p-3 a-link "><i class="fa-solid fa-gamepad i-link"></i> Ajouter des Jeux</a>
-        <a href="#" class="p-3 a-link "><i class="fa-solid fa-list-ul i-link"></i> Liste des jeux</a>
+        <a href="pages/jeux.php" class="p-3 a-link "><i class="fa-solid fa-list-ul i-link"></i> Liste des jeux</a>
         <a href="#" class="p-3 a-link "><i class="fa-regular fa-message i-link"></i> Messages</a>
         <a href="#" class="p-3 a-link "><i class="fas fa-history i-link"></i> Historique</a>
         
@@ -33,11 +40,13 @@
                     <div class="btn-group me-5 align-items-center">
                         <button class="btn btn-transparent text-white btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="assets/image/avatar.png" alt="Avatar" style="width:22px; height: 22px;" class="rounded-pill">
-                            <span class="text-white"> Username</span>
+                            <span class="text-white"> <?php username() ?></span>
                         </button>
                         <ul class="dropdown-menu">
                           <li><a href="#"><i class="fa-solid fa-pen-to-square"></i> Voir le profile</a></li>
-                          <li><a href="#"><i class="fa-solid fa-right-to-bracket"></i> Se deconnecter</a></li>
+                          <form action="scripts.php" method="POST">
+                          <li><button type="submit" name="signOut"><i class="fa-solid fa-right-to-bracket"></i> Se deconnecter</button></li>
+                          </form>
                         </ul>
                     </div>
                 </div>
@@ -81,10 +90,10 @@
                 <th colspan="4"><h5 class="fw-light text-dark">Les jeux recemment ajoutés</h5></th>
             </tr>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Title</th>
+            <th scope="col">Categorie</th>
+            <th scope="col">Date d'ajout</th>
+            <th scope="col">Prix</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">

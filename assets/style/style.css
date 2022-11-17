@@ -194,9 +194,13 @@ input{
     color: var(--color-dark);
     font-weight: 500;
 }
+input.input-index{
+    border: none;
+    outline: none;
+}
 .slide-form{
     position: absolute;
-    background: linear-gradient(to right,rgba(171, 226, 248, 1), rgba(0, 106, 255, 1));
+    background: linear-gradient(to right,rgba(171, 226, 248, 1), rgb(8, 50, 109));
     width: 50%;
     height: 100%;
     backdrop-filter: blur(10px);
@@ -218,7 +222,6 @@ input{
     transform: translateY(-5px);
     transition: 0.4s;
 }
-
 /* dashboard */
 #header-dashboard *{
     font-weight: 600;
@@ -272,12 +275,11 @@ table :is(td,th){
     font-size: 12px;
 }
 .table{
-    border-top: 1px solid lightgrey;
+    border-top: 1px solid lightgrey; 
 }
-#piechart{
-    /* background-color: #00688B; */
-}
+
 .container-table{
     width: 50%;
-
 }
+
+/* jeux */
