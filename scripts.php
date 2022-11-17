@@ -120,8 +120,10 @@ function suppCategorie(){
    include 'conf.php';
    $sql    = "delete from categories where id=".$_GET["suppCat"];
    $result = mysqli_query($conn,$sql);
-   if(!$result){
-    $msg="Problem lors de la suppression !";
+   if($result){
+        header("Location: pages/categories.php");
+   }else{
+        $msg="Problem lors de la suppression !";
         header("Location: pages/categories.php?msg=$msg");
    }
 
