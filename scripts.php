@@ -5,8 +5,11 @@ session_start();
 if(isset($_POST["signUp"]))     signup();
 if(isset($_POST["signIn"]))     signin(); 
 if(isset($_POST["signOut"]))    logout();
+
 if(isset($_POST['addCat']))     addCategorie();
 if(isset($_GET['suppCat']))     suppCategorie();
+
+if(isset($_GET['save']))        addjeu();
 if(isset($_GET['suppJeu']))     suppJeu();
 
 
@@ -134,9 +137,27 @@ function suppJeu(){
     $result = mysqli_query($conn,$sql);
     if($result){
         header("Location: pages/jeux.php");
-        
     }else{
-        $msg="Problem lors de la suppression !";
+        $msg="Probleme lors de la suppression !";
+        header("Location: pages/jeux.php?msg=$msg");
+   }
+}
+function addjeu(){
+    include 'conf.php';
+    $title       = $_POST["jeu-title"];
+    $date        = $_POST["jeu-date"];
+    $prix        = $_POST["jeu-prix"];
+    $categorie   = $_POST["jeu-categorie"];
+    $description = $_POST["jeu-description"];
+    
+    
+    $sql    ="INSERT INTO jeux (`title`, `prix`, `date_ajout`, `id_cat`, `description`) 
+                    VALUES ('$title', '$prix','$date','$categorie','$description')";
+    $result = mysqli_query($conn,$sql);
+    if($result){
+        header("Location: pages/jeux.php");
+    }else{
+        $msg="Probleme lors de l'ajout !";
         header("Location: pages/jeux.php?msg=$msg");
    }
 }

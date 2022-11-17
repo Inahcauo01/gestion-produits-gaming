@@ -23,7 +23,7 @@ if (!isset($_SESSION['username'])) {
         <a href="../dashboard.php" class="p-3 a-link"><i class="fas fa-chart-line i-link"></i> Tableau de bord</a>
         <a href="#" class="p-3 a-link "><i class="fa-regular fa-handshake i-link"></i> Gestion des commandes</a>
         <a href="#" class="p-3 a-link "><i class="fas fa-users i-link"></i> Utilisateurs</a>
-        <a href="jeux.php" class="p-3 a-link active"><i class="fa-solid fa-gamepad i-link"></i> Liste des jeux</a>
+        <a href="jeux.php" class="p-3 a-link active"><i class="fa-solid fa-gamepad i-link"></i> Jeux</a>
         <a href="categories.php" class="p-3 a-link "><i class="fa-solid fa-list-ul i-link"></i> Categories</a>
         <a href="#" class="p-3 a-link "><i class="fa-regular fa-message i-link"></i> Messages</a>
         <a href="#" class="p-3 a-link "><i class="fas fa-history i-link"></i> Historique</a>
@@ -103,7 +103,7 @@ if (!isset($_SESSION['username'])) {
     <div class="modal fade" id="modal-game">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="scripts.php" method="POST" id="form-jeu">
+				<form action="../scripts.php" method="POST" id="form-jeu">
 					<div class="modal-header">
 						<h5 id="modalTitle" class="text-dark">Ajouter un jeu</h5>
 						<a href="#" class="btn-close" data-bs-dismiss="modal"></a>
@@ -124,21 +124,17 @@ if (!isset($_SESSION['username'])) {
 							</div>
                             <div class="mb-3">
 								<label class="form-label text-dark">Categorie</label>
-								<select class="form-select" id="task-categorie" name="task-categorie">
-									<option value="">Please select</option>
-									<option class="text-secondary fw-light" id="low" 	value="1">Action</option>
-									<option class="text-secondary fw-light" id="medium" value="2">Sport</option>
-									<option class="text-secondary fw-light" id="high" 	value="3">Combat</option>
-                
+								<select class="form-select" id="jeu-categorie" name="jeu-categorie">
+									<option value="" class="text-secondary fw-light">Please select</option>            
                                     <?php
                                     /* ===== Afficher seulement les categories qui sont exitées au BD ======== */
-                                    // $sql="SELECT * FROM categories";
-                                    // $result=mysqli_query($conn,$sql);
-                                    // if (mysqli_num_rows($result) > 0) {
-                                    //     while($row = mysqli_fetch_assoc($result)) {
-                                    //         echo "<option value=". $row['id'] ." id=".$row['nom'].">".$row['nom']."</option>";
-                                    //     }
-                                    // }
+                                    $sql="SELECT * FROM categories";
+                                    $result=mysqli_query($conn,$sql);
+                                    if (mysqli_num_rows($result) > 0) {
+                                        while($row = mysqli_fetch_assoc($result)) {
+                                            echo "<option class=\"text-secondary fw-light\" value=". $row['id'] ." id=".$row['nom'].">".$row['nom']."</option>";
+                                        }
+                                    }
                                     ?>
 								</select>
 							</div>
