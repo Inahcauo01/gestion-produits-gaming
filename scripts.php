@@ -9,7 +9,7 @@ if(isset($_POST["signOut"]))    logout();
 if(isset($_POST['addCat']))     addCategorie();
 if(isset($_GET['suppCat']))     suppCategorie();
 
-if(isset($_GET['save']))        addjeu();
+if(isset($_POST['save']))        addjeu();
 if(isset($_GET['suppJeu']))     suppJeu();
 
 
@@ -25,7 +25,7 @@ if($pwd != $cpwd){
     header("Location: index.php?msg=$msg");
 }
 else{
-    $sql    = "select * from user where email = '$email' and type_user= 1";
+    $sql    = "select * from user where email = '$email'";
     $result = mysqli_query($conn,$sql);
     
     if(mysqli_num_rows($result)>0){
@@ -60,6 +60,7 @@ function signin(){
     $result = mysqli_query($conn,$sql);
     
     if(mysqli_num_rows($result)){
+        $_SESSION['username'] = $row['username'];
         $msg="vous êtes connecté";
         header("Location: index.php?msg=$msg");
     }
@@ -149,10 +150,20 @@ function addjeu(){
     $prix        = $_POST["jeu-prix"];
     $categorie   = $_POST["jeu-categorie"];
     $description = $_POST["jeu-description"];
+
+    $filename = $_FILES['image']['name'];
+
+    if(!empty($filename)){
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+        $new_filename = time().'.'.$ext;
+        move_uploaded_file($_FILES['image']['tmp_name'], 'assets/uploads/'.$new_filename);
+    }
+    else{
+        $new_filename = 'fshdxhgdxgh';
+    }
     
-    
-    $sql    ="INSERT INTO jeux (`title`, `prix`, `date_ajout`, `id_cat`, `description`) 
-                    VALUES ('$title', '$prix','$date','$categorie','$description')";
+    $sql    ="INSERT INTO jeux (`title`, `prix`, `date_ajout`, `id_cat`, `image`, `description`) 
+                    VALUES ('$title', '$prix','$date','$categorie','$new_filename','$description')";
     $result = mysqli_query($conn,$sql);
     if($result){
         header("Location: pages/jeux.php");

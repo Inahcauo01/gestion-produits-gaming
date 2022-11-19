@@ -62,6 +62,7 @@ if (!isset($_SESSION['username'])) {
     <table class="table table-hover table-jeux text-center">
     <thead>
         <tr>
+            <th scope="col">Image</th>
             <th scope="col">Titre</th>
             <th scope="col">Prix</th>
             <th scope="col">Date d'ajout</th>
@@ -71,16 +72,17 @@ if (!isset($_SESSION['username'])) {
     </thead>
     <tbody>
     <?php
-        $sql    = "select j.id j_id,title,prix,date_ajout,id_cat, c.id,nom from jeux j, categories c where j.id_cat=c.id";
+        $sql    = "select j.id j_id,title,image,prix,date_ajout,id_cat, c.id,nom from jeux j, categories c where j.id_cat=c.id";
         $result = mysqli_query($conn,$sql);
 
         if (mysqli_num_rows($result) > 0) {
     
             while($row = mysqli_fetch_assoc($result)) {
-                // $image = (!empty($row['img_prod'])) ? 'images/'.$row['img_prod'] : 'images/noimage.png';
-                echo "<tr><td>" 
-                . $row["title"]. "</td><td>" 
-                . $row["prix"] ."</td><td>" 
+                $image = (!empty($row['image'])) ? '../assets/uploads/'.$row["image"] : '../assets/image/aucune.jpg';
+                echo "<tr><td> 
+                <img src='".$image."' height='40px' width='30px'></td><td>" 
+                . $row["title"]. "</td><td>"
+                . $row["prix"] ."</td><td>"
                 . $row["date_ajout"]."</td><td>"
                 . $row["nom"]
             // liste des actions
@@ -103,7 +105,7 @@ if (!isset($_SESSION['username'])) {
     <div class="modal fade" id="modal-game">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="../scripts.php" method="POST" id="form-jeu">
+				<form action="../scripts.php" method="POST" id="form-jeu" enctype="multipart/form-data">
 					<div class="modal-header">
 						<h5 id="modalTitle" class="text-dark">Ajouter un jeu</h5>
 						<a href="#" class="btn-close" data-bs-dismiss="modal"></a>
@@ -120,7 +122,7 @@ if (!isset($_SESSION['username'])) {
 							</div>
                             <div class="mb-3">
 								<label class="form-label text-dark">Prix</label>
-								<input type="text" class="form-control" id="jeu-prix" name="jeu-prix" required/>
+								<input type="number" step="0.01" class="form-control" id="jeu-prix" name="jeu-prix" required/>
 							</div>
                             <div class="mb-3">
 								<label class="form-label text-dark">Categorie</label>
@@ -138,9 +140,13 @@ if (!isset($_SESSION['username'])) {
                                     ?>
 								</select>
 							</div>
+                            <div class="mb-3">
+								<label class="form-label text-dark">Image</label>
+								<input type="file" class="form-control" id="image" name="image" />
+							</div>
 							<div class="mb-0">
 								<label class="form-label text-dark">Description</label>
-								<textarea class="form-control" rows="4" id="jeu-description" name="jeu-description" required></textarea>
+								<textarea class="form-control" rows="2" id="jeu-description" name="jeu-description" required></textarea>
 							</div>
 					</div>
 					<div class="modal-footer">

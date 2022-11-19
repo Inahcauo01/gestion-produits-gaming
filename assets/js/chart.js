@@ -6,9 +6,8 @@ function drawChart() {
         ['categorie', 'nombre des jeux'],
         ['Action',     11],
         ['Sport',      2],
-        ['Strategie',  2],
-        ['Puzzele', 2],
-        ['Combat',    7]
+        ['Strategie',  2]
+        
     ]);
 
     var options = {
