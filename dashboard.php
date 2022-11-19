@@ -82,7 +82,13 @@ if (!isset($_SESSION['username'])) {
             <div class="col-lg-2 bg-dark rounded-4 m-2 p-4">
                 <div class="title">Totale Utilisateurs</div>
                 <i class="fas fa-users"></i>
-                <div class="value">40</div>
+                <div class="value">
+                    <?php
+                        $sql = "select * from user ";
+                        $result = mysqli_query($conn,$sql);
+                        echo mysqli_num_rows($result);
+                    ?>
+                </div>
             </div>
             <div class="col-lg-2 bg-dark rounded-4 m-2 p-4">
                 <div class="title">Totale commandes</div>
