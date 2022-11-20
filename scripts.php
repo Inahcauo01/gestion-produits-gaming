@@ -9,8 +9,10 @@ if(isset($_POST["signOut"]))    logout();
 if(isset($_POST['addCat']))     addCategorie();
 if(isset($_GET['suppCat']))     suppCategorie();
 
-if(isset($_POST['save']))        addjeu();
+if(isset($_POST['save']))       addjeu();
 if(isset($_GET['suppJeu']))     suppJeu();
+if(isset($_POST['modifJeu']))   modifJeu();
+
 
 
 function signup(){
@@ -159,7 +161,7 @@ function addjeu(){
         move_uploaded_file($_FILES['image']['tmp_name'], 'assets/uploads/'.$new_filename);
     }
     else{
-        $new_filename = 'fshdxhgdxgh';
+        $new_filename = '';
     }
     
     $sql    ="INSERT INTO jeux (`title`, `prix`, `date_ajout`, `id_cat`, `image`, `description`) 
@@ -171,6 +173,42 @@ function addjeu(){
         $msg="Probleme lors de l'ajout !";
         header("Location: pages/jeux.php?msg=$msg");
    }
+}
+
+function modifJeu(){
+    include 'conf.php';
+    $id          = $_POST["jeu-id"];
+    $title       = $_POST["jeu-title"];
+    $date        = $_POST["jeu-date"];
+    $prix        = $_POST["jeu-prix"];
+    $categorie   = $_POST["jeu-categorie"];
+    $desc        = $_POST["jeu-description"];
+
+    
+    $filename = $_FILES['image']['name'];
+    
+    if(!empty($filename)){
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+        $new_filename = time().'.'.$ext;
+        move_uploaded_file($_FILES['image']['tmp_name'], 'assets/uploads/'.$new_filename);
+        $sql    = "UPDATE jeux set title='{$title}', prix='{$prix}' , date_ajout='{$date}' ,id_cat='{$categorie}', description='{$desc}', image='{$new_filename}' WHERE id=$id";
+
+    }
+    else{
+        $new_filename = '';
+        $sql    = "UPDATE jeux set title='{$title}', prix='{$prix}' , date_ajout='{$date}' ,id_cat='{$categorie}', description='{$desc}' WHERE id=$id";
+    }
+
+    $result = mysqli_query($conn,$sql);
+        
+        if ($result) {
+            $_SESSION['msg'] = "Task has been updated successfully !";
+		    header('location: pages/jeux.php?done=done');
+        }else{
+            $_SESSION['msg'] = "error lors de la modification";
+            header('location: pages/jeux.php?erreur=erruer');
+        }
+         
 }
 
 ?>

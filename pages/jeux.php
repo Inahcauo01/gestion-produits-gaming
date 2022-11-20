@@ -72,7 +72,7 @@ if (!isset($_SESSION['username'])) {
     </thead>
     <tbody>
     <?php
-        $sql    = "select j.id j_id,title,image,prix,date_ajout,id_cat, c.id,nom from jeux j, categories c where j.id_cat=c.id";
+        $sql    = "select j.id j_id,title,image,prix,date_ajout,id_cat, c.id,nom ,description from jeux j, categories c where j.id_cat=c.id";
         $result = mysqli_query($conn,$sql);
 
         if (mysqli_num_rows($result) > 0) {
@@ -86,7 +86,12 @@ if (!isset($_SESSION['username'])) {
                 . $row["date_ajout"]."</td><td>"
                 . $row["nom"]
             // liste des actions
-                ."</td><td><a  href=\"../scripts.php?suppJeu=".$row["j_id"]."\" onclick=\"confirm('Vous voulez vraiment supprimer ce jeu')\" class=\"btn btn-sm btn-dark rounded-pill\">Supprimer</a></td></tr>";
+                ."</td><td>
+                <button class=\"btn btn-sm btn-light border rounded-pill\" data-bs-toggle=\"modal\" data-bs-target=\"#modal-game\" 
+                onclick=\"updateButton(".$row["j_id"].",'".$row["title"]."',".$row["prix"].",'".$row["date_ajout"]."','".$row["description"]."','".$row["image"]."',".$row["id_cat"].",'".$row["nom"]."')\">
+                Modifier</button>
+                <a  href=\"../scripts.php?suppJeu=".$row["j_id"]."\" onclick=\"confirm('Vous voulez vraiment supprimer ce jeu')\" class=\"btn btn-sm btn-dark rounded-pill\">Supprimer</a>
+                </td></tr>";
                 ;
             }
         }
@@ -133,8 +138,8 @@ if (!isset($_SESSION['username'])) {
                                     $sql="SELECT * FROM categories";
                                     $result=mysqli_query($conn,$sql);
                                     if (mysqli_num_rows($result) > 0) {
-                                        while($row = mysqli_fetch_assoc($result)) {
-                                            echo "<option class=\"text-secondary fw-light\" value=". $row['id'] ." id=".$row['nom'].">".$row['nom']."</option>";
+                                        while($row = mysqli_fetch_assoc($result)) { 
+                                            echo "<option class=\"text-secondary fw-light\"  value=". $row['id'] ." id=".$row['id'].">".$row['nom']."</option>";
                                         }
                                     }
                                     ?>
@@ -142,7 +147,7 @@ if (!isset($_SESSION['username'])) {
 							</div>
                             <div class="mb-3">
 								<label class="form-label text-dark">Image</label>
-								<input type="file" class="form-control" id="image" name="<span class="text-sidebar">image" />
+								<input type="file" class="form-control" id="image" name="image" />
 							</div>
 							<div class="mb-0">
 								<label class="form-label text-dark">Description</label>
@@ -151,7 +156,7 @@ if (!isset($_SESSION['username'])) {
 					</div>
 					<div class="modal-footer">
 						<a href="#" class="btn btn-dark" data-bs-dismiss="modal">Cancel</a>
-						<button type="submit" name="update" class="btn btn-dark task-action-btn" id="btnUpdate">Update</button>
+						<button type="submit" name="modifJeu" class="btn btn-light task-action-btn" id="btnUpdate">Update</button>
 						<button type="submit" name="save" 	class="btn btn-secondary task-action-btn" id="btnSave">Save</button>
 					</div>
 				</form>
@@ -163,37 +168,28 @@ if (!isset($_SESSION['username'])) {
     <script src="https://kit.fontawesome.com/dbe94a6a5a.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script>
-function updateButton(id, title, type, status, priority, date, description){
-
-document.getElementById("modalTitle").innerHTML   = "EDIT TASK";
-document.getElementById('btnSave').style.display  = 'none';
-document.getElementById('btnUpdate').style.display= 'block';
-
-
-document.getElementById("task-id").value		  = id;
-document.getElementById("task-title").value 	  = title;
-document.getElementById("task-date").value 		  = date;
-document.getElementById("task-description").value = description;
-
-if(type == 1) 			document.getElementById("task-type-feature").checked = true;
-else 					document.getElementById("task-type-bug").checked 	 = true;
-
-if(priority == 1) 		document.getElementById("low").selected	   = true;
-else if(priority == 2) 	document.getElementById("medium").selected = true;
-else if(priority == 3)	document.getElementById("high").selected   = true;
-
-if(status == 1) 		document.getElementById("todo").selected 	   = true;
-else if(status == 2) 	document.getElementById("inProgress").selected = true;
-else if(status == 3)	document.getElementById("done").selected 	   = true;
-
-}
-
 // vider les champs lorsqu'on click sur ajouter jeu
 document.getElementById('addgame').addEventListener('click', ()=>{
 		document.getElementById('form-jeu').reset();
 		document.getElementById('btnSave').style.display   = 'block';
 		document.getElementById('btnUpdate').style.display = 'none';
 });
+
+function updateButton(id, title, prix, date, description ,image ,id_cat, nom){
+    
+    document.getElementById("modalTitle").innerHTML   = "Modifier le jeu";
+    document.getElementById('btnSave').style.display  = 'none';
+    document.getElementById('btnUpdate').style.display= 'block';
+
+    document.getElementById("jeu-id").value          = id;
+    document.getElementById("jeu-title").value       = title;
+    document.getElementById("jeu-prix").value        = prix;
+    document.getElementById("jeu-date").value        = date;
+    document.getElementById("jeu-description").value = description;
+
+    document.getElementById(id_cat).selected = true;
+
+}
 
 // confirmer la suppression
 function supp($id){
