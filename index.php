@@ -140,7 +140,6 @@ if(isset($_GET["msg"])){
     <!-- Form authentification-->
     <div class="popup-form">
         <!-- inscription form -->
-        <!-- <form action="scripts.php"></form> -->
         <form action="scripts.php" method="POST" class="login-form col-6">
             <h2>Creer un compte</h2>
             <input class="input-index" name="usernameSignup" placeholder="Nom complet" type="text">
@@ -153,13 +152,16 @@ if(isset($_GET["msg"])){
         <!-- connection form -->
         <form action="scripts.php" method="POST" class="sign-form col-6 d-flex flex-column justify-content-between align-items-center"> 
             <h2>Se connecter</h2>
-            
             <span class="close align-self-end"><i class="fa-regular fa-circle-xmark fa-2x"></i></span>
             <div>
-                <input class="input-index" name="emailSignin" placeholder="Email" type="email" class="mb-3">
-                <input class="input-index" name="pwdSignin" placeholder="mot de passe" type="password"><br>
+                <input class="input-index" name="emailSignin" id="emailSignin" placeholder="Email" type="email" class="mb-3" onkeydown="emailValidation()">
+                <i class="fa-solid fa-circle-xmark text-danger erreur"></i>
+                <input class="input-index" name="pwdSignin" placeholder="mot de passe" type="password">
+                <i class="fa-solid fa-circle-xmark text-danger erreur"></i>
             </div>
             <button class="btn btn-primary rounded-pill" type="submit" name="signIn">se connecter</button>
+            
+            <span class="alert-erreur">erreur</span>
         </form>
 
 

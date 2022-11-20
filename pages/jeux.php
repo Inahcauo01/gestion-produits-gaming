@@ -4,6 +4,7 @@ if (!isset($_SESSION['username'])) {
 	$msg="Error ! Vous n'avez pas la permission d'entrer";
     header("Location: index.php?msg=$msg");
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -55,6 +56,15 @@ if (!isset($_SESSION['username'])) {
     </nav>
 
 <main class="main">
+<?php
+if(isset($_SESSION["add"])){
+    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+    '.$_SESSION["add"].'
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+    unset($_SESSION["add"]);
+}
+?>
     <div class="d-flex justify-content-between m-2">
         <h4 class="text-dark">Liste des jeux</h4>
         <button class="btn btn-dark rounded-pill btn-sm" id="addgame" data-bs-toggle="modal" data-bs-target="#modal-game"><i class="fa fa-plus"></i> Ajouter un jeu</button>
@@ -104,6 +114,8 @@ if (!isset($_SESSION['username'])) {
 
 
 </main>
+
+
 </div>
 
     <!-- Modal -->

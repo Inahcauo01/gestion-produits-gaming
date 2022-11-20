@@ -170,8 +170,8 @@ function addjeu(){
     if($result){
         header("Location: pages/jeux.php");
     }else{
-        $msg="Probleme lors de l'ajout !";
-        header("Location: pages/jeux.php?msg=$msg");
+        $_SESSION["add"]="Probleme lors de l'ajout !";
+        header("Location: pages/jeux.php");
    }
 }
 

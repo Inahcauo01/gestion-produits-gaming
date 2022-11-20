@@ -197,6 +197,7 @@ input{
 input.input-index{
     border: none;
     outline: none;
+    
 }
 .slide-form{
     position: absolute;
@@ -295,4 +296,16 @@ table :is(td,th){
     #header-dashboard{
         grid-template-columns: 50px auto;
     }
+}
+
+/* .erreur{
+    visibility: hidden;
+} */
+.alert-erreur{
+    font-size: 14px;
+    font-weight: 500;
+    position: absolute;
+    top: 7rem;
+    left: 56%;
+    color: tomato;
 }
