@@ -20,13 +20,13 @@ if (!isset($_SESSION['username'])) {
     <div id="nav-side" class="bg-dark d-flex flex-column">
         <a href="index.php" class="navbar-brand col-4 mb-3"><h4 class="logo">ORIGIN GAMER</h4></a>
 
-        <a href="dashboard.php" class="p-3 a-link active"><i class="fas fa-chart-line i-link"></i> Tableau de bord</a>
-        <a href="#" class="p-3 a-link "><i class="fa-regular fa-handshake i-link"></i> Gestion des commandes</a>
-        <a href="#" class="p-3 a-link "><i class="fas fa-users i-link"></i> Utilisateurs</a>
-        <a href="pages/jeux.php" class="p-3 a-link "><i class="fa-solid fa-gamepad i-link"></i> Jeux</a>
-        <a href="pages/categories.php" class="p-3 a-link "><i class="fa-solid fa-list-ul i-link"></i> Categories</a>
-        <a href="#" class="p-3 a-link "><i class="fa-regular fa-message i-link"></i> Messages</a>
-        <a href="#" class="p-3 a-link "><i class="fas fa-history i-link"></i> Historique</a>
+        <a href="dashboard.php" class="p-3 active"><i class="fas fa-chart-line i-link"></i><span class="text-sidebar a-link active"> Tableau de bord</span></a>
+        <a href="#" class="p-3 a-link "><i class="fa-regular fa-handshake i-link"></i><span class="text-sidebar"> Gestion des commandes</span></a>
+        <a href="#" class="p-3 a-link "><i class="fas fa-users i-link"></i><span class="text-sidebar"> Utilisateurs</span></a>
+        <a href="pages/jeux.php" class="p-3 a-link "><i class="fa-solid fa-gamepad i-link"></i><span class="text-sidebar"> Jeux</span></a>
+        <a href="pages/categories.php" class="p-3 a-link "><i class="fa-solid fa-list-ul i-link"></i><span class="text-sidebar"> Categories</span></a>
+        <a href="#" class="p-3 a-link "><i class="fa-regular fa-message i-link"></i><span class="text-sidebar"> Messages</span></a>
+        <a href="#" class="p-3 a-link "><i class="fas fa-history i-link"></i><span class="text-sidebar"> Historique</span></a>
         
     </div>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="nav-top">
@@ -150,10 +150,10 @@ if (!isset($_SESSION['username'])) {
                 $result = mysqli_query($conn,$sql);
 
                 $row = mysqli_fetch_assoc($result);
-                echo "['".$row["nom"]."','".$row["nbr"]."']";
+                echo "['".$row["nom"]."',".$row["nbr"]."]";
 
                 while($row = mysqli_fetch_assoc($result)){
-                    echo ",['".$row["nom"]."','".$row["nbr"]."']";
+                    echo ",['".$row["nom"]."',".$row["nbr"]."]";
                 }
             ?>
         ]);

@@ -242,7 +242,7 @@ aside .logo:hover{
     display: grid;
     height: 100vh;
     grid-template-columns: 17% auto;
-    grid-template-rows: 50px auto;
+    grid-template-rows: 53px auto;
     grid-template-areas: "aside nav"
                         "aside main";
 }
@@ -270,6 +270,9 @@ aside .logo:hover{
     color: var(--color-dark);
     transition: .4s ease-in-out;
 }
+.a-link:hover .text-sidebar{
+    color: var(--color-dark);
+}
 table :is(td,th){
     color: var(--color-dark);
     font-size: 12px;
@@ -282,4 +285,14 @@ table :is(td,th){
     width: 50%;
 }
 
-/* categories */
+@media only screen and (max-width: 750px){
+    .text-sidebar{
+        display: none;
+    }
+    /* #nav-side{
+        width: 56px;
+    } */
+    #header-dashboard{
+        grid-template-columns: 50px auto;
+    }
+}

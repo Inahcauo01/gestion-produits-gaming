@@ -20,13 +20,13 @@ if (!isset($_SESSION['username'])) {
     <div id="nav-side" class="bg-dark d-flex flex-column">
         <a href="../index.php" class="navbar-brand col-4  mb-3"><h4 class="logo">ORIGIN GAMER</h4></a>
 
-        <a href="../dashboard.php" class="p-3 a-link"><i class="fas fa-chart-line i-link"></i> Tableau de bord</a>
-        <a href="#" class="p-3 a-link "><i class="fa-regular fa-handshake i-link"></i> Gestion des commandes</a>
-        <a href="#" class="p-3 a-link "><i class="fas fa-users i-link"></i> Utilisateurs</a>
-        <a href="jeux.php" class="p-3 a-link active"><i class="fa-solid fa-gamepad i-link"></i> Jeux</a>
-        <a href="categories.php" class="p-3 a-link "><i class="fa-solid fa-list-ul i-link"></i> Categories</a>
-        <a href="#" class="p-3 a-link "><i class="fa-regular fa-message i-link"></i> Messages</a>
-        <a href="#" class="p-3 a-link "><i class="fas fa-history i-link"></i> Historique</a>
+        <a href="../dashboard.php" class="p-3 a-link"><i class="fas fa-chart-line i-link"></i><span class="text-sidebar"> Tableau de bord</a>
+        <a href="#" class="p-3 a-link "><i class="fa-regular fa-handshake i-link"></i><span class="text-sidebar"> Gestion des commandes</a>
+        <a href="#" class="p-3 a-link "><i class="fas fa-users i-link"></i><span class="text-sidebar"> Utilisateurs</a>
+        <a href="jeux.php" class="p-3 a-link active"><i class="fa-solid fa-gamepad i-link"></i><span class="text-sidebar active"> Jeux</a>
+        <a href="categories.php" class="p-3 a-link "><i class="fa-solid fa-list-ul i-link"></i><span class="text-sidebar"> Categories</a>
+        <a href="#" class="p-3 a-link "><i class="fa-regular fa-message i-link"></i><span class="text-sidebar"> Messages</a>
+        <a href="#" class="p-3 a-link "><i class="fas fa-history i-link"></i><span class="text-sidebar"> Historique</a>
         
     </div>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="nav-top">
@@ -142,7 +142,7 @@ if (!isset($_SESSION['username'])) {
 							</div>
                             <div class="mb-3">
 								<label class="form-label text-dark">Image</label>
-								<input type="file" class="form-control" id="image" name="image" />
+								<input type="file" class="form-control" id="image" name="<span class="text-sidebar">image" />
 							</div>
 							<div class="mb-0">
 								<label class="form-label text-dark">Description</label>
