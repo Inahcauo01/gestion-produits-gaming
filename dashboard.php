@@ -106,7 +106,7 @@ if (!isset($_SESSION['username'])) {
                                 $sql    = "select round(sum(prix),2) as sum from jeux";
                                 $result = mysqli_query($conn,$sql);
                                 $row = mysqli_fetch_assoc($result);
-                                echo $row["sum"]." $";
+                                echo $row["sum"];
                             ?>
                         </div>
                     </div>

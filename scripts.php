@@ -93,7 +93,8 @@ function logout(){
 
 function buttons(){
     if(isset($_SESSION['username'])){
-        echo "<form action=\"scripts.php\" method=\"POST\">
+        echo "<a href=\"dashboard.php\" class=\"btn-light fw-normal\">Dashboard</a>
+        <form action=\"scripts.php\" method=\"POST\">
         <button class=\"bg-transparent\" type=\"submit\" name=\"signOut\"><i class=\"fa-solid fa-right-to-bracket\"></i> Se deconnecter</button>
         </form>";
     }else {
@@ -143,6 +144,7 @@ function suppJeu(){
         header("Location: pages/jeux.php");
     }else{
         $msg="Probleme lors de la suppression !";
+        $_SESSION['msg'] = "Probleme lors de la suppression !";
         header("Location: pages/jeux.php?msg=$msg");
    }
 }
@@ -185,7 +187,6 @@ function modifJeu(){
     $categorie   = $_POST["jeu-categorie"];
     $desc        = $_POST["jeu-description"];
 
-    
     $filename = $_FILES['image']['name'];
     
     if(!empty($filename)){
@@ -204,10 +205,10 @@ function modifJeu(){
         
         if ($result) {
             $_SESSION['msg'] = "Task has been updated successfully !";
-		    header('location: pages/jeux.php?done=done');
+		    header('location: pages/jeux.php');
         }else{
             $_SESSION['msg'] = "error lors de la modification";
-            header('location: pages/jeux.php?erreur=erruer');
+            header('location: pages/jeux.php');
         }
          
 }

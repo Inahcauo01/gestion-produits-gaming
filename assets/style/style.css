@@ -195,9 +195,9 @@ input{
     font-weight: 500;
 }
 input.input-index{
+    margin-top: 20px;
     border: none;
     outline: none;
-    
 }
 .slide-form{
     position: absolute;

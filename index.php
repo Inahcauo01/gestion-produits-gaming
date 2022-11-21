@@ -1,28 +1,11 @@
 <?php include 'scripts.php';
-
-if(isset($_GET["msg"])){
-  $msg=$_GET["msg"];
-  echo "<script>alert('$msg')</script>";
-}
+$titlePage = 'ORIGIN GAMER';
+include 'assets/components/head.php';
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/style/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- parsely -->
-    <link rel="stylesheet"   href="https://parsleyjs.org/src/parsley.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script defer src="https://parsleyjs.org/dist/parsley.min.js"></script>
 
-    <title>ORIGIN GAMER</title>
-</head>
+
+
 <body>
-    
     <header id="first-view">
         <nav class="navbar navbar-expand-sm bg-transparent navbar-dark">
             <div class="container-fluid">
@@ -40,9 +23,9 @@ if(isset($_GET["msg"])){
                         </li>
                         <li class="nav-item">
                             <a class="nav-link fw-light" href="#">Apropos de nous</a>
-                        </li>    
+                        </li>   
                     </ul>
-                    <div class="col-6 d-flex justify-content-end">
+                    <div class="col-6 d-flex justify-content-end align-items-center">
                         <?php buttons() ?>
                         
                     </div>
@@ -55,7 +38,14 @@ if(isset($_GET["msg"])){
             
         </div>
         <div class="my-5 ms-4">
+            <!-- < ?php
+                if(!isset($_POST["username"])){
+                    echo '';
+                }else
+                echo '';
+            ?> -->
             <span class="btn btn-primary rounded-pill px-5 light sinscrire">s'inscrire</span>
+            
             <span class="btn btn-light border rounded-pill px-5 light">commencer</span>
         </div>
         <!-- personaisation du curseur -->
@@ -86,6 +76,9 @@ if(isset($_GET["msg"])){
         <h1 class="grand-titre">Les categories</h1>
         <!-- La liste des categories -->
         <div class="d-flex row justify-content-around">
+            <?php
+            
+            ?>
             <div class="categorie-cell">Action</div>
             <div class="categorie-cell">Combat</div>
             <div class="categorie-cell">Sport</div>
@@ -99,7 +92,30 @@ if(isset($_GET["msg"])){
         <h1 class="grand-titre">Les jeux recemment ajout&eacutes</h1>
         <!-- Les cartes des jeux -->
         <div class="d-flex row">
+            <?php
+                $sql    = "select j.id j_id,title,image,prix,date_ajout,id_cat, c.id,nom from jeux j, categories c where j.id_cat=c.id order by date_ajout desc limit 3";
+                $result = mysqli_query($conn,$sql);
+
+                if (mysqli_num_rows($result) > 0) {    
+                    while($row = mysqli_fetch_assoc($result)) {
+                        $image = (!empty($row['image'])) ? 'assets/uploads/'.$row["image"] : 'assets/image/aucune.jpg';
+                        ?>
+
                 <div class="col-sm-4 my-4">
+                    <div class="card">
+                        <img class="card-img-top" src="<?php echo $image ?>" alt="<?php echo $row["title"] ?>">
+                        <span class="date"><?php echo $row["date_ajout"] ?></span>
+                        <div class="card-body">
+                            <small><?php echo $row["nom"] ?></small>
+                            <h2><?php echo $row["title"] ?></h2>
+                            <p class="card-text"><?php echo $row["description"] ?></p>
+                        </div>
+                    </div>
+                </div>
+            <?php
+            }}
+            ?>
+                <!-- <div class="col-sm-4 my-4">
                     <div class="card">
                         <img class="card-img-top" src="assets/image/huntshowdown.jpg" alt="nom-jeu">
                         <span class="date">14/02/2022</span>
@@ -108,7 +124,6 @@ if(isset($_GET["msg"])){
                             <h2>Hunt showdown</h2>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
-                        
                     </div>
                 </div>
                 
@@ -136,9 +151,9 @@ if(isset($_GET["msg"])){
                         </div>
                         
                     </div>
-                </div>
+                </div>-->
                 
-        </div>
+        </div> 
         <a href="#" class="btn btn-primary">Voir plus</a>
     </section>
     
@@ -149,10 +164,10 @@ if(isset($_GET["msg"])){
             <h2>Creer un compte</h2>
             <input class="input-index" name="usernameSignup" placeholder="Nom complet" type="text" data-parsley-minlength="3" required>
             <input class="input-index" name="emailSignup" placeholder="Email" type="email" data-parsley-type="email" required>
-            <input class="input-index" name="pwdSignup" placeholder="mot de passe" type="password" id="pwd" data-parsley-minlength="4" required><br>
-            <input class="input-index" name="cpwdsignup" placeholder="Confirmer le mot de passe" type="password" data-parsley-equalto="#pwd" required><br>
+            <input class="input-index" name="pwdSignup" placeholder="mot de passe" type="password" id="pwd" data-parsley-minlength="4" required>
+            <input class="input-index" name="cpwdsignup" placeholder="Confirmer le mot de passe" type="password" data-parsley-equalto="#pwd" required>
 
-            <button class="btn btn-primary rounded-pill" type="submit" name="signUp">s'inscrire</button>
+            <br><button class="btn btn-primary rounded-pill" type="submit" name="signUp">s'inscrire</button>
         </form>
         <!-- connection form -->
         <form action="scripts.php" method="POST" class="sign-form col-6 d-flex flex-column justify-content-between align-items-center"> 

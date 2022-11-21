@@ -97,9 +97,9 @@ if(isset($_SESSION["add"])){
                 . $row["nom"]
             // liste des actions
                 ."</td><td>
-                <button class=\"btn btn-sm btn-light border rounded-pill\" data-bs-toggle=\"modal\" data-bs-target=\"#modal-game\" 
+                <button class=\"btn btn-sm rounded-pill\" data-bs-toggle=\"modal\" data-bs-target=\"#modal-game\" 
                 onclick=\"updateButton(".$row["j_id"].",'".$row["title"]."',".$row["prix"].",'".$row["date_ajout"]."','".$row["description"]."','".$row["image"]."',".$row["id_cat"].")\">
-                Modifier</button>
+                <i class=\"fa-regular fa-pen-to-square text-dark \"></i></button>
 
                 <a  href=\"../scripts.php?suppJeu=".$row["j_id"]."\" id=\"deleteclick".$row["j_id"]."\" hidden></a>
             <button  onclick=\"confirmSupp(".$row["j_id"].")\" class=\"btn btn-sm rounded-pill\"><i class=\"fas fa-trash-alt text-secondary\"></i></a></td></tr>";
