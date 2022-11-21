@@ -95,7 +95,8 @@ if (!isset($_SESSION['username'])) {
                             . $row["id"]. "</td><td>" 
                             . $row["nom"] 
                         // btn supprimer
-                            ."</td><td><a href=\"../scripts.php?suppCat=".$row["id"]."\" onclick=\"confirm('Vous voulez vraiment supprimer ce jeu')\" class=\"btn btn-sm btn-dark rounded-pill\"><i class=\"fas fa-trash-alt\"></i> Supprimer</a></td></tr>";
+                            ."</td><td><a href=\"../scripts.php?suppCat=".$row["id"]."\" id=\"deleteclick".$row["id"]."\" hidden></a>
+                            <button  onclick=\"confirmSupp(".$row["id"].")\" class=\"btn btn-sm rounded-pill\"><i class=\"fas fa-trash-alt text-secondary\"></i></a></td></tr>";
                     }}
                     ?>
                 </tbody>
@@ -108,6 +109,12 @@ if (!isset($_SESSION['username'])) {
     <!-- scripts -->
 <script src="https://kit.fontawesome.com/dbe94a6a5a.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    
+<script>
+    // confirmer la suppression
+function confirmSupp($id){
+    if(confirm("voulez vous vraiment supprimer ?"))
+    document.getElementById("deleteclick"+$id).click();
+};
+</script>
 </body>
 </html>
