@@ -55,3 +55,6 @@ document.querySelector(".seconnecter").addEventListener("click",()=>{
 
     document.querySelector(".popup-form").style.display = "flex";
 })
+
+// form validation using Parsley
+$('#formSignup').parsley();

@@ -255,7 +255,6 @@ aside .logo:hover{
 }
 .main{
     grid-area: main;
-    background-color: white;
 }
 .btn-group *{
     font-size: 14px;
@@ -298,10 +297,11 @@ table :is(td,th){
     }
 }
 
-/* .erreur{
+.erreur{
     visibility: hidden;
-} */
+}
 .alert-erreur{
+    visibility: hidden;
     font-size: 14px;
     font-weight: 500;
     position: absolute;

@@ -57,43 +57,59 @@ if (!isset($_SESSION['username'])) {
 <main class="main">
     <div class="container p-3">
         <div class="row d-flex justify-content-around flex-wrap">
-            <div class="col-lg-2 bg-dark rounded-4 m-2 p-4 ">
+            
+            <div class="col-lg-2 bg-dark rounded-4 m-2 p-4">
                 <div class="title">Totale jeux</div>
-                <i class="fa-solid fa-gamepad"></i>
-                <div class="value">
-                    <?php
-                        $sql = "select * from jeux ";
-                        $result = mysqli_query($conn,$sql);
-                        echo mysqli_num_rows($result);
-                    ?>
-                </div>
+                    <div class="d-flex justify-content-between align-items-center mx-1">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <div class="value fs-2">
+                            <?php
+                                $sql = "select * from jeux ";
+                                $result = mysqli_query($conn,$sql);
+                                echo mysqli_num_rows($result);
+                            ?>
+                        </div>
+                    </div>
             </div>
             <div class="col-lg-2 bg-dark rounded-4 m-2 p-4">
                 <div class="title">Totale Categories</div>
+                <div class="d-flex justify-content-between align-items-center mx-1">
                 <i class="fa-solid fa-layer-group"></i>
-                <div class="value">
-                    <?php
-                        $sql = "select * from categories ";
-                        $result = mysqli_query($conn,$sql);
-                        echo mysqli_num_rows($result);
-                    ?>
+                    <div class="value fs-2">
+                        <?php
+                            $sql = "select * from categories ";
+                            $result = mysqli_query($conn,$sql);
+                            echo mysqli_num_rows($result);
+                        ?>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-2 bg-dark rounded-4 m-2 p-4">
                 <div class="title">Totale Utilisateurs</div>
-                <i class="fas fa-users"></i>
-                <div class="value">
-                    <?php
-                        $sql = "select * from user ";
-                        $result = mysqli_query($conn,$sql);
-                        echo mysqli_num_rows($result);
-                    ?>
+                <div class="d-flex justify-content-between align-items-center mx-1">
+                    <i class="fas fa-users"></i>
+                    <div class="value fs-2">
+                        <?php
+                            $sql = "select * from user ";
+                            $result = mysqli_query($conn,$sql);
+                            echo mysqli_num_rows($result);
+                        ?>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-2 bg-dark rounded-4 m-2 p-4">
-                <div class="title">Totale commandes</div>
-                <i class="fa-solid fa-cart-shopping"></i>
-                <div class="value">12</div>
+                <div class="title">Totale prix</div>
+                <div class="d-flex justify-content-between align-items-center mx-1">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <div class="value fs-2">
+                            <?php
+                                $sql    = "select round(sum(prix),2) as sum from jeux";
+                                $result = mysqli_query($conn,$sql);
+                                $row = mysqli_fetch_assoc($result);
+                                echo $row["sum"]." $";
+                            ?>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
@@ -107,8 +123,14 @@ if (!isset($_SESSION['username'])) {
             <tr>
                 <th colspan="4"><h5 class="fw-light text-dark">Les jeux recemment ajoutés</h5></th>
             </tr>
+            <tr>
+                <th>Title</th>
+                <th>Prix</th>
+                <th>Date d'ajout</th>
+                <th>Categorie</th>
+            </tr>
             <?php
-                $sql    = "select j.id j_id,title,image,prix,date_ajout,id_cat, c.id,nom from jeux j, categories c where j.id_cat=c.id order by date_ajout desc";
+                $sql    = "select j.id j_id,title,image,prix,date_ajout,id_cat, c.id,nom from jeux j, categories c where j.id_cat=c.id order by date_ajout desc limit 5";
                 $result = mysqli_query($conn,$sql);
 
                 if (mysqli_num_rows($result) > 0) {
@@ -137,7 +159,7 @@ if (!isset($_SESSION['username'])) {
     <script src="https://kit.fontawesome.com/dbe94a6a5a.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      <!-- <script src="assets/js/chart.js"></script> -->
+      <!-- Script graphe -->
     <script>
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);

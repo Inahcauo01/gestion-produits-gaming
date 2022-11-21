@@ -58,16 +58,18 @@ function signin(){
     $email  = $_POST['emailSignin'];
     $pwd    = md5($_POST['pwdSignin']);
 
-    $sql    = "select * from user where email = '$email' and password = '$pwd' and type_user= 1";
-    $result = mysqli_query($conn,$sql);
+    // $sql    = "select * from user where email = '$email' and password = '$pwd' and type_user= 1";
+    // $result = mysqli_query($conn,$sql);
     
-    if(mysqli_num_rows($result)){
-        $_SESSION['username'] = $row['username'];
-        $msg="vous êtes connecté";
-        header("Location: index.php?msg=$msg");
-    }
-    else{
-        $sql    = "select * from user where email = '$email' and password = '$pwd' and type_user = 2";
+    // if(mysqli_num_rows($result)){
+    //     $_SESSION['username'] = $row['username'];
+    //     $msg="vous êtes connecté";
+    //     header("Location: index.php?msg=$msg");
+    // }
+    // else{
+        
+        // $sql    = "select * from user where email = '$email' and password = '$pwd' and type_user = 2";
+        $sql    = "select * from user where email = '$email' and password = '$pwd'";
         $result = mysqli_query($conn,$sql);
 
         if(mysqli_num_rows($result)>0){
@@ -80,7 +82,6 @@ function signin(){
             header("Location: index.php?msg=$msg");
         }
         
-    }
 }
 
 function logout(){

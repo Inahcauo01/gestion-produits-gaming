@@ -14,6 +14,11 @@ if(isset($_GET["msg"])){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- parsely -->
+    <link rel="stylesheet"   href="https://parsleyjs.org/src/parsley.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script defer src="https://parsleyjs.org/dist/parsley.min.js"></script>
+
     <title>ORIGIN GAMER</title>
 </head>
 <body>
@@ -140,12 +145,12 @@ if(isset($_GET["msg"])){
     <!-- Form authentification-->
     <div class="popup-form">
         <!-- inscription form -->
-        <form action="scripts.php" method="POST" class="login-form col-6">
+        <form action="scripts.php" method="POST" class="login-form col-6" id="formSignup" data-parsley-validate >
             <h2>Creer un compte</h2>
-            <input class="input-index" name="usernameSignup" placeholder="Nom complet" type="text">
-            <input class="input-index" name="emailSignup" placeholder="Email" type="email">
-            <input class="input-index" name="pwdSignup" placeholder="mot de passe" type="password"><br>
-            <input class="input-index" name="cpwdsignup" placeholder="Confirmer le mot de passe" type="password"><br>
+            <input class="input-index" name="usernameSignup" placeholder="Nom complet" type="text" data-parsley-minlength="3" required>
+            <input class="input-index" name="emailSignup" placeholder="Email" type="email" data-parsley-type="email" required>
+            <input class="input-index" name="pwdSignup" placeholder="mot de passe" type="password" id="pwd" data-parsley-minlength="4" required><br>
+            <input class="input-index" name="cpwdsignup" placeholder="Confirmer le mot de passe" type="password" data-parsley-equalto="#pwd" required><br>
 
             <button class="btn btn-primary rounded-pill" type="submit" name="signUp">s'inscrire</button>
         </form>

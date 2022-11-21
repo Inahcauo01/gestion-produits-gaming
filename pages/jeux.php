@@ -98,11 +98,11 @@ if(isset($_SESSION["add"])){
             // liste des actions
                 ."</td><td>
                 <button class=\"btn btn-sm btn-light border rounded-pill\" data-bs-toggle=\"modal\" data-bs-target=\"#modal-game\" 
-                onclick=\"updateButton(".$row["j_id"].",'".$row["title"]."',".$row["prix"].",'".$row["date_ajout"]."','".$row["description"]."','".$row["image"]."',".$row["id_cat"].",'".$row["nom"]."')\">
+                onclick=\"updateButton(".$row["j_id"].",'".$row["title"]."',".$row["prix"].",'".$row["date_ajout"]."','".$row["description"]."','".$row["image"]."',".$row["id_cat"].")\">
                 Modifier</button>
-                <a  href=\"../scripts.php?suppJeu=".$row["j_id"]."\" onclick=\"confirm('Vous voulez vraiment supprimer ce jeu')\" class=\"btn btn-sm btn-dark rounded-pill\">Supprimer</a>
-                </td></tr>";
-                ;
+
+                <a  href=\"../scripts.php?suppJeu=".$row["j_id"]."\" id=\"deleteclick".$row["j_id"]."\" hidden></a>
+            <button  onclick=\"confirmSupp(".$row["j_id"].")\" class=\"btn btn-sm rounded-pill\"><i class=\"fas fa-trash-alt text-secondary\"></i></a></td></tr>";
             }
         }
     ?>
@@ -187,7 +187,7 @@ document.getElementById('addgame').addEventListener('click', ()=>{
 		document.getElementById('btnUpdate').style.display = 'none';
 });
 
-function updateButton(id, title, prix, date, description ,image ,id_cat, nom){
+function updateButton(id, title, prix, date, description ,image ,id_cat){
     
     document.getElementById("modalTitle").innerHTML   = "Modifier le jeu";
     document.getElementById('btnSave').style.display  = 'none';
@@ -204,8 +204,8 @@ function updateButton(id, title, prix, date, description ,image ,id_cat, nom){
 }
 
 // confirmer la suppression
-function supp($id){
-    $('#modal-jeu').modal('hide');
+
+function confirmSupp($id){
     if(confirm("voulez vous vraiment supprimer ce jeu ?"))
     document.getElementById("deleteclick"+$id).click();
 };
