@@ -284,7 +284,10 @@ table :is(td,th){
 .container-table{
     width: 50%;
 }
-
+.btn-dashboard{
+    display: flex;
+    flex-direction: row;
+}
 @media only screen and (max-width: 750px){
     .glow {
         margin-bottom: 0px;

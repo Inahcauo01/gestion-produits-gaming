@@ -47,7 +47,6 @@ else{
         }
 
     }
-
 }
 
 
@@ -94,10 +93,10 @@ function logout(){
 function buttons(){
     if(isset($_SESSION['username'])){
         echo "
-        <div =\"btn-dashboard\">
-        <a href=\"dashboard.php\" class=\"btn-light fw-normal btn-dashboard\">Dashboard</a>
+        <div class=\"btn-dashboard\">
+        <a href=\"dashboard.php\" class=\"btn-light fw-normal btn-dash\">Dashboard</a>
         <form action=\"scripts.php\" method=\"POST\">
-        <button class=\"bg-transparent\" type=\"submit\" name=\"signOut\"><i class=\"fa-solid fa-right-to-bracket\"></i> Se deconnecter</button>
+        <button class=\"bg-dark rounded-pill\" type=\"submit\" name=\"signOut\"><i class=\"fa-solid fa-right-to-bracket\"></i> Se deconnecter</button>
         </form>
         </div>
         ";
