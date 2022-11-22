@@ -22,9 +22,9 @@ if (!isset($_SESSION['username'])) {
         <a href="../index.php" class="navbar-brand col-4  mb-3"><h4 class="logo">ORIGIN GAMER</h4></a>
 
         <a href="../dashboard.php" class="p-3 a-link"><i class="fas fa-chart-line i-link"></i><span class="text-sidebar"> Tableau de bord</a>
-        <a href="users.php" class="p-3 a-link "><i class="fas fa-users i-link"></i><span class="text-sidebar"> Utilisateurs</a>
+        <a href="users.php" class="p-3 a-link active"><i class="fas fa-users i-link"></i><span class="text-sidebar active"> Utilisateurs</a>
         <a href="jeux.php" class="p-3 a-link "><i class="fa-solid fa-gamepad i-link"></i><span class="text-sidebar"> Jeux</a>
-        <a href="#" class="p-3 a-link active"><i class="fa-solid fa-list-ul i-link"></i><span class="text-sidebar active"> Categories</a>
+        <a href="categories.php" class="p-3 a-link"><i class="fa-solid fa-list-ul i-link"></i><span class="text-sidebar"> Categories</a>
         
     </div>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="nav-top">
@@ -53,47 +53,31 @@ if (!isset($_SESSION['username'])) {
     </nav>
     <main class="main">
     <div class="container">
-        <h3 class="text-dark">Categories</h3>
-        <!-- Insertion d'un nouvelle categorie -->
-        <form action="../scripts.php" method="POST" class="d-flex justify-content-between align-items-center w-50">
-            
-        <label class="text-dark">Nom de nouvelle categorie</label>
-        <div class="form-group">
-            <input type="text" class="form-control" name="nom_cat" placeholder="categorie" required>
-        </div>
-        <div>
-            <button type="submit" name="addCat" class="btn btn-dark btn-sm">Ajouter</button>
-        </div>
+        <h3 class="text-dark">Liste des utilisateurs</h3>
     </form>
     </div>
-
-
-
-
 
     <!-- tables de categories -->
         <div class="container">
             <table class="table table-hover text-center">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Id de categorie</th>
-                        <th scope="col">nom de categorie</th>
-                        <th scope="col">Operations</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "select * from categories";
+                    $sql = "select * from user";
                     $result = mysqli_query($conn,$sql);
 
                     if (mysqli_num_rows($result) > 0) {
                         while($row = mysqli_fetch_assoc($result)) {
                             echo "<tr><td>" 
-                            . $row["id"]. "</td><td>" 
-                            . $row["nom"] 
-                        // btn supprimer
-                            ."</td><td><a href=\"../scripts.php?suppCat=".$row["id"]."\" id=\"deleteclick".$row["id"]."\" hidden></a>
-                            <button  onclick=\"confirmSupp(".$row["id"].")\" class=\"btn btn-sm rounded-pill\"><i class=\"fas fa-trash-alt text-secondary\"></i></a></td></tr>";
+                            . $row["id_user"]. "</td><td>" 
+                            . $row["username"] ."</td><td>" 
+                            . $row["email"] ."</td></tr>";
                     }}
                     ?>
                 </tbody>

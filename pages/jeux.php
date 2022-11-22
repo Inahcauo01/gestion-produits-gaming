@@ -22,12 +22,9 @@ if (!isset($_SESSION['username'])) {
         <a href="../index.php" class="navbar-brand col-4  mb-3"><h4 class="logo">ORIGIN GAMER</h4></a>
 
         <a href="../dashboard.php" class="p-3 a-link"><i class="fas fa-chart-line i-link"></i><span class="text-sidebar"> Tableau de bord</a>
-        <a href="#" class="p-3 a-link "><i class="fa-regular fa-handshake i-link"></i><span class="text-sidebar"> Gestion des commandes</a>
-        <a href="#" class="p-3 a-link "><i class="fas fa-users i-link"></i><span class="text-sidebar"> Utilisateurs</a>
+        <a href="users.php" class="p-3 a-link "><i class="fas fa-users i-link"></i><span class="text-sidebar"> Utilisateurs</a>
         <a href="jeux.php" class="p-3 a-link active"><i class="fa-solid fa-gamepad i-link"></i><span class="text-sidebar active"> Jeux</a>
         <a href="categories.php" class="p-3 a-link "><i class="fa-solid fa-list-ul i-link"></i><span class="text-sidebar"> Categories</a>
-        <a href="#" class="p-3 a-link "><i class="fa-regular fa-message i-link"></i><span class="text-sidebar"> Messages</a>
-        <a href="#" class="p-3 a-link "><i class="fas fa-history i-link"></i><span class="text-sidebar"> Historique</a>
         
     </div>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="nav-top">

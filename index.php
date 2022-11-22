@@ -77,13 +77,14 @@ include 'assets/components/head.php';
         <!-- La liste des categories -->
         <div class="d-flex row justify-content-around">
             <?php
-            
+            $sql    = "select * from categories limit 5";
+            $result = mysqli_query($conn,$sql);
+            if(mysqli_num_rows($result)>0){
+                while($row = mysqli_fetch_assoc($result)){
+                    echo "<div class=\"categorie-cell\">".$row["nom"]."</div>";
+                }
+            }
             ?>
-            <div class="categorie-cell">Action</div>
-            <div class="categorie-cell">Combat</div>
-            <div class="categorie-cell">Sport</div>
-            <div class="categorie-cell">Strategie</div>
-            <div class="categorie-cell">Puzzele</div>
             <div class="categorie-cell">Voir plus</div>
         </div>
     </article>
@@ -101,7 +102,7 @@ include 'assets/components/head.php';
                         $image = (!empty($row['image'])) ? 'assets/uploads/'.$row["image"] : 'assets/image/aucune.jpg';
                         ?>
 
-                <div class="col-sm-4 my-4">
+                <div class="col-lg-4 my-4">
                     <div class="card">
                         <img class="card-img-top" src="<?php echo $image ?>" alt="<?php echo $row["title"] ?>">
                         <span class="date"><?php echo $row["date_ajout"] ?></span>

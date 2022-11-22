@@ -286,15 +286,21 @@ table :is(td,th){
 }
 
 @media only screen and (max-width: 750px){
+    .glow {
+        margin-bottom: 0px;
+        font-size: 40px;
+    }
     .text-sidebar{
         display: none;
     }
-    /* #nav-side{
-        width: 56px;
-    } */
     #header-dashboard{
         grid-template-columns: 50px auto;
     }
+    .btn-dashboard{
+        display: flex;
+        flex-direction: column;
+    }
+    
 }
 
 .erreur{
