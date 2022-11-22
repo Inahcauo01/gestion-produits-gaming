@@ -55,7 +55,7 @@ if (!isset($_SESSION['username'])) {
     <div class="container p-3">
         <div class="row d-flex justify-content-around flex-wrap">
             
-            <div class="col-lg-2 bg-dark rounded-4 m-2 p-4">
+            <div class="col-lg-2 bg-dark rounded-4 m-2 p-4 card-dash">
                 <div class="title">Totale jeux</div>
                     <div class="d-flex justify-content-between align-items-center mx-1">
                         <i class="fa-solid fa-gamepad"></i>
@@ -68,7 +68,7 @@ if (!isset($_SESSION['username'])) {
                         </div>
                     </div>
             </div>
-            <div class="col-lg-2 bg-dark rounded-4 m-2 p-4">
+            <div class="col-lg-2 bg-dark rounded-4 m-2 p-4 card-dash">
                 <div class="title">Totale Categories</div>
                 <div class="d-flex justify-content-between align-items-center mx-1">
                 <i class="fa-solid fa-layer-group"></i>
@@ -81,7 +81,7 @@ if (!isset($_SESSION['username'])) {
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 bg-dark rounded-4 m-2 p-4">
+            <div class="col-lg-2 bg-dark rounded-4 m-2 p-4 card-dash">
                 <div class="title">Totale Utilisateurs</div>
                 <div class="d-flex justify-content-between align-items-center mx-1">
                     <i class="fas fa-users"></i>
@@ -94,7 +94,7 @@ if (!isset($_SESSION['username'])) {
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 bg-dark rounded-4 m-2 p-4">
+            <div class="col-lg-2 bg-dark rounded-4 m-2 p-4 card-dash">
                 <div class="title">Totale prix</div>
                 <div class="d-flex justify-content-between align-items-center mx-1">
                         <i class="fa-solid fa-cart-shopping"></i>
@@ -114,6 +114,7 @@ if (!isset($_SESSION['username'])) {
     <div class="d-flex">
 
 <!-- Table  -->
+<div class="d-flex w-100 container-dash">
 <div class="container-table mt-5">
     <table class="table ms-3">
         <thead>
@@ -147,6 +148,7 @@ if (!isset($_SESSION['username'])) {
     </table>
 </div>
     <div id="piechart" style="width: 90%; height: 500px;"></div>
+</div>
 </div>
 
 </main>

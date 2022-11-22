@@ -55,7 +55,7 @@ if (!isset($_SESSION['username'])) {
     <div class="container">
         <h3 class="text-dark">Categories</h3>
         <!-- Insertion d'un nouvelle categorie -->
-        <form action="../scripts.php" method="POST" class="d-flex justify-content-between align-items-center w-50">
+        <form action="../scripts.php" method="POST" class="d-flex justify-content-between align-items-center">
             
         <label class="text-dark">Nom de nouvelle categorie</label>
         <div class="form-group">

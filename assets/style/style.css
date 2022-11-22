@@ -300,7 +300,15 @@ table :is(td,th){
         display: flex;
         flex-direction: column;
     }
-    
+    .card-dash{
+        width: calc(100% - 90px);
+    }
+    .container-dash{
+        flex-direction: column;
+    }
+    #piechart{
+        width: 100%;
+    }
 }
 
 .erreur{
