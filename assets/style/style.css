@@ -326,3 +326,8 @@ table :is(td,th){
     left: 56%;
     color: tomato;
 }
+#alert-session{
+    position: fixed;
+    top: 90%;
+    left: 89%;
+}

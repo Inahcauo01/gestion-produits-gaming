@@ -23,27 +23,27 @@ function signup(){
     $cpwd  = md5($_POST["cpwdsignup"]);
 
 if($pwd != $cpwd){
-    $msg="les pwds sont pas identiques !";
-    header("Location: index.php?msg=$msg");
+    $_SESSION["msg"] = "les pwds sont pas identiques !";
+    header("Location: index.php");
 }
 else{
     $sql    = "select * from user where email = '$email'";
     $result = mysqli_query($conn,$sql);
     
     if(mysqli_num_rows($result)>0){
-        $msg="L'email a déja utilisé !";
-        header("Location: index.php?msg=$msg");
+        $_SESSION["msg"] = "L'email a déja utilisé !";
+        header("Location: index.php");
     }else{
         $sql    = "INSERT INTO user (username, email, password) VALUES ('$nom', '$email', '$pwd' )";
         $result = mysqli_query($conn,$sql);
 
         if($result){
-            $msg="l'utilisateur a bien été inscrit";
-            header("Location: index.php?msg=$msg");
+            $_SESSION["msg"] = "l'utilisateur a bien été inscrit";
+            header("Location: index.php");
         }
         else{
-            $msg="Erreur lors de l inscription Veuillez ressayer plus tard :/";
-            header("Location: index.php?msg=$msg");
+            $_SESSION["msg"] = "Erreur lors de l inscription Veuillez ressayer plus tard :/";
+            header("Location: index.php");
         }
 
     }
@@ -57,17 +57,6 @@ function signin(){
     $email  = $_POST['emailSignin'];
     $pwd    = md5($_POST['pwdSignin']);
 
-    // $sql    = "select * from user where email = '$email' and password = '$pwd' and type_user= 1";
-    // $result = mysqli_query($conn,$sql);
-    
-    // if(mysqli_num_rows($result)){
-    //     $_SESSION['username'] = $row['username'];
-    //     $msg="vous êtes connecté";
-    //     header("Location: index.php?msg=$msg");
-    // }
-    // else{
-        
-        // $sql    = "select * from user where email = '$email' and password = '$pwd' and type_user = 2";
         $sql    = "select * from user where email = '$email' and password = '$pwd'";
         $result = mysqli_query($conn,$sql);
 
@@ -77,8 +66,8 @@ function signin(){
 
             header("location: dashboard.php");
         }else{
-            $msg="l email ou le mot de passe est incorrect";
-            header("Location: index.php?msg=$msg");
+            $_SESSION["msg"] ="l email ou le mot de passe est incorrect";
+            header("Location: index.php");
         }
         
 }
@@ -148,7 +137,7 @@ function suppJeu(){
     }else{
         $msg="Probleme lors de la suppression !";
         $_SESSION['msg'] = "Probleme lors de la suppression !";
-        header("Location: pages/jeux.php?msg=$msg");
+        header("Location: pages/jeux.php");
    }
 }
 function addjeu(){
@@ -176,7 +165,7 @@ function addjeu(){
     if($result){
         header("Location: pages/jeux.php");
     }else{
-        $_SESSION["add"]="Probleme lors de l'ajout !";
+        $_SESSION["msg"]="Probleme lors de l'ajout !";
         header("Location: pages/jeux.php");
    }
 }

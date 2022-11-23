@@ -32,6 +32,17 @@ include 'assets/components/head.php';
                 </div>
             </div>
         </nav>
+
+        <?php
+        if(isset($_SESSION["msg"])){
+            echo '<div class="alert alert-secondary alert-dismissible fade show id="alert-session" role="alert">
+            '.$_SESSION["msg"].'
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+            unset($_SESSION["msg"]);
+        }
+        ?>
+
         <div class="first-title col-6">
             <h1 class="glow">CHALLENGE YOURSELF <br>AND LET THE GAME BEGIN ...</h1>
             <p>Le site numero un , pour mieux vous servir de trouver les meilleurs jeux videos</p>
@@ -44,7 +55,11 @@ include 'assets/components/head.php';
                 }else
                 echo '';
             ?> -->
-            <span class="btn btn-primary rounded-pill px-5 light sinscrire">s'inscrire</span>
+            <span class="btn btn-primary rounded-pill px-5 light sinscrire"><?php
+                if(!isset($_POST["username"])){
+                    echo "s'inscrire";
+                }else
+                echo '';?></span>
             
             <span class="btn btn-light border rounded-pill px-5 light">commencer</span>
         </div>
@@ -175,9 +190,9 @@ include 'assets/components/head.php';
             <h2>Se connecter</h2>
             <span class="close align-self-end"><i class="fa-regular fa-circle-xmark fa-2x"></i></span>
             <div>
-                <input class="input-index" name="emailSignin" id="emailSignin" placeholder="Email" type="email" class="mb-3" onkeydown="emailValidation()">
+                <input class="input-index" name="emailSignin" id="emailSignin" placeholder="Email" type="email" class="mb-3" required>
                 <i class="fa-solid fa-circle-xmark text-danger erreur"></i>
-                <input class="input-index" name="pwdSignin" placeholder="mot de passe" type="password">
+                <input class="input-index" name="pwdSignin" placeholder="mot de passe" type="password" required>
                 <i class="fa-solid fa-circle-xmark text-danger erreur"></i>
             </div>
             <button class="btn btn-primary rounded-pill" type="submit" name="signIn">se connecter</button>

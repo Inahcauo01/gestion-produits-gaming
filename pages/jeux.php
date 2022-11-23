@@ -14,6 +14,7 @@ if (!isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/style/style.css">
+    
     <title>Dashboard</title>
 </head>
 <body>
@@ -54,12 +55,12 @@ if (!isset($_SESSION['username'])) {
 
 <main class="main">
 <?php
-if(isset($_SESSION["add"])){
+if(isset($_SESSION["msg"])){
     echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-    '.$_SESSION["add"].'
+    '.$_SESSION["msg"].'
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>';
-    unset($_SESSION["add"]);
+    unset($_SESSION["msg"]);
 }
 ?>
     <div class="d-flex justify-content-between m-2">
@@ -119,7 +120,7 @@ if(isset($_SESSION["add"])){
     <div class="modal fade" id="modal-game">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="../scripts.php" method="POST" id="form-jeu" enctype="multipart/form-data">
+				<form action="../scripts.php" method="POST" id="form-jeu" enctype="multipart/form-data" >
 					<div class="modal-header">
 						<h5 id="modalTitle" class="text-dark">Ajouter un jeu</h5>
 						<a href="#" class="btn-close" data-bs-dismiss="modal"></a>
@@ -176,6 +177,7 @@ if(isset($_SESSION["add"])){
     <!-- scripts -->
     <script src="https://kit.fontawesome.com/dbe94a6a5a.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
     <script>
 // vider les champs lorsqu'on click sur ajouter jeu
 document.getElementById('addgame').addEventListener('click', ()=>{
