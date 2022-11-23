@@ -67,6 +67,7 @@ if(isset($_SESSION["msg"])){
         <h4 class="text-dark">Liste des jeux</h4>
         <button class="btn btn-dark rounded-pill btn-sm" id="addgame" data-bs-toggle="modal" data-bs-target="#modal-game"><i class="fa fa-plus"></i> Ajouter un jeu</button>
     </div>
+    <div class="table-responsive">
     <table class="table table-hover table-jeux text-center">
     <thead>
         <tr>
@@ -107,11 +108,12 @@ if(isset($_SESSION["msg"])){
 
     </tbody>
     </table>
+    </div>
 
 
 
 
-</main>
+    </main>
 
 
 </div>

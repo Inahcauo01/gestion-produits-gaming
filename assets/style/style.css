@@ -152,6 +152,7 @@ header{
     background: linear-gradient(to top,rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0));
     height: 11rem;
     top: 23rem;
+    width: 100%;
 }
 .card:hover .card-body{
     top: 18rem;
@@ -168,7 +169,6 @@ header{
 .card .date{
     position: absolute;
 }
-
 .popup-form{
     padding: 50px 20px;
     display: flex;

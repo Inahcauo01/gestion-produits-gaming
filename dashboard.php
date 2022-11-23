@@ -40,7 +40,7 @@ if (!isset($_SESSION['username'])) {
                             <span class="text-white"> <?php username() ?></span>
                         </button>
                         <ul class="dropdown-menu">
-                          <li><a href="#"><i class="fa-solid fa-pen-to-square"></i> Voir le profile</a></li>
+                          <li><a href="pages/profile.php"><i class="fa-solid fa-pen-to-square"></i> Voir le profile</a></li>
                           <form action="scripts.php" method="POST">
                           <li><button type="submit" name="signOut"><i class="fa-solid fa-right-to-bracket"></i> Se deconnecter</button></li>
                           </form>

@@ -109,7 +109,7 @@ include 'assets/components/head.php';
         <!-- Les cartes des jeux -->
         <div class="d-flex row">
             <?php
-                $sql    = "select j.id j_id,title,image,prix,date_ajout,id_cat, c.id,nom from jeux j, categories c where j.id_cat=c.id order by date_ajout desc limit 3";
+                $sql    = "select j.id j_id,title,image,prix,date_ajout,id_cat, c.id,nom, description from jeux j, categories c where j.id_cat=c.id order by date_ajout desc limit 3";
                 $result = mysqli_query($conn,$sql);
 
                 if (mysqli_num_rows($result) > 0) {    
