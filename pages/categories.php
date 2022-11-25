@@ -72,7 +72,7 @@ if (!isset($_SESSION['username'])) {
 
 
     <!-- tables de categories -->
-        <div class="container">
+        <div class="table-responsive">
             <table class="table table-hover text-center">
                 <thead class="thead-dark">
                     <tr>

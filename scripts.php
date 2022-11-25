@@ -63,6 +63,7 @@ function signin(){
         if(mysqli_num_rows($result)>0){
             $row = mysqli_fetch_assoc($result);
             $_SESSION['username'] = $row['username'];
+            $_SESSION['id'] = $row['id_user'];
 
             header("location: dashboard.php");
         }else{

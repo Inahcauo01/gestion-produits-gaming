@@ -1,9 +1,10 @@
 <?php include '../scripts.php';
 
 if (!isset($_SESSION['username'])) {
-	$msg="Error ! Vous n'avez pas la permission d'entrer";
-    header("Location: ../index.php?msg=$msg");
+	$_SESSION['msg'] ="Error ! Vous n'avez pas la permission d'entrer";
+    header("Location: ../index.php");
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -51,9 +52,50 @@ if (!isset($_SESSION['username'])) {
             </div>
         </div>
     </nav>
-    <main class="main bg-danger m-3">
-        <form action="scripts.php" method="post">
-            
+    <main class="main m-3 d-flex justify-content-center">
+    <?php 
+    if(isset($_SESSION["id"]))
+        $sql    = "select * from user where id_user =".$_SESSION["id"];
+        $result = mysqli_query($conn,$sql);
+        if(mysqli_num_rows($result)>0){
+           $row = mysqli_fetch_assoc($result);
+           $image = (!empty($row['image'])) ? '../assets/uploads/'.$row["image"] : '../assets/image/avatar.png';
+        }
+    ?>
+        <form action="scripts.php" method="post" class="w-75 d-flex flex-column p-5 justify-content-center shadow-lg" enctype="multipart/form-data">
+        <div class="mb-3 row text-center d-flex justify-content-center">
+            <img src="<?php echo $image ?>" style="width: 220px;"  class="rounded-circle shadow" alt="">
+        </div>
+        <div class="mb-3 row">
+            <input type="file" name="imageAvatar" id="imageAvatar">
+        </div>
+        <div class="mb-3 row">
+            <label for="statiUsername" class="col-sm-2 col-form-label text-dark">Username</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control-plaintext input-profile fw-light" id="statiUsername" value="<?php  echo $row["username"]; ?>">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label text-dark">Email</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control-plaintext input-profile fw-light" id="statiEmail" value="<?php  echo $row["email"]; ?>">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-2 col-form-label  text-dark">New password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control input-profile fw-light" id="inputPassword" readonly>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-2 col-form-label  text-dark">Password actuel</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control input-profile fw-light" id="inputPassword" readonly>
+            </div>
+        </div>
+        <div class="mb-3 row justify-content-center">
+            <button type="submit" class="btn btn-secondary w-25">Modifier</button>
+        </div>
         </form>
     </main>
 </div>

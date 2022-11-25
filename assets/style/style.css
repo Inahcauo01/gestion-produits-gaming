@@ -189,12 +189,12 @@ input{
     padding: 5px;
     padding-left: 12px;
     width: 70%;
-    border-radius: 20px;
     border: none;
     color: var(--color-dark);
     font-weight: 500;
 }
 input.input-index{
+    border-radius: 20px;
     margin-top: 20px;
     border: none;
     outline: none;
