@@ -241,7 +241,7 @@ include 'assets/components/head.php';
                 <span><small>Designed By <a href="mailto:tarek.ouachani01@gmail.com">TAREK Inahcauo</a></small></span>
             </div>
       </div>  
-  </div>
+    </div>
 
 
     <!-- scripts -->
